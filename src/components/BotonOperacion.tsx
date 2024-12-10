@@ -1,29 +1,22 @@
 import { Pressable, Text, StyleSheet } from "react-native";
+import GlobalStyle from "../Themes/GlobalStyle";
 
 interface Props {
     label: string,
-    width: number,
+    width?: number,
     onPress?: () => void;
+    backgroundColor?: string;
+    textoColor?: string;
 }
 
-export const BotonOperacion = ({label, width, onPress}:Props) => {
+export const BotonOperacion = ({ label, width = 80, onPress, backgroundColor = "#f0f0f0", textoColor = "#000" }: Props) => {
     return (
-        <Pressable>
-            <Text 
-                style={[styles.boton, {width}]}
-                onPress={onPress}>{label}</Text>
+        <Pressable
+            style={[GlobalStyle.boton, { width, backgroundColor }]}
+            onPress={onPress}
+        >
+            <Text style={[GlobalStyle.texto, { color: textoColor }]}>{label}</Text> {}
         </Pressable>
-    )
+    );
 };
 
-const styles = StyleSheet.create({
-    boton: {
-        width:80,
-        textAlign: 'center',
-        padding: 10,
-        fontSize: 30,
-        fontWeight: 300,
-        borderColor: 'black',
-        borderWidth: 2,
-    }
-  });
